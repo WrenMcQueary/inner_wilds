@@ -35,6 +35,7 @@ class Scene:
         self.is_trick = is_trick
         self.is_start = is_start
         self.is_end = is_end
+        self.is_world = self.text.startswith("WORLD: ")
 
     def set_choices_to_ids(self, choices_to_ids: tuple):
         """
@@ -76,7 +77,7 @@ class Scene:
         """Get a choice from the player and return it.
         :param found_tricks:        list of tricks that have been discovered by the player, as strings
         """
-        available_choices = [choice for choice in self.choices_from_references if choice.is_available(found_tricks)]
+        available_choices = [choice for choice in self.choices_from_references if choice.is_available(found_tricks) and not choice.leads_to_reference.is_trick]
         num_to_choice = {str(cc+1): choice for cc, choice in enumerate(available_choices)}
         prompt = "\n"
         keys = num_to_choice.keys()
@@ -89,6 +90,32 @@ class Scene:
                 break
             print("Choice not recognized.  Choose again.")
         return num_to_choice[player_response]
+
+    def is_child_of_world(self) -> tuple:
+        """
+        If this Scene is not a trick and not a world, and is the child of a world through a sequence of choice without
+        any blue or green choices, return True and the world scene it's a child of.  Else return False and None.
+        :return:        tuple with two elements: a boolean, then a Scene or None.
+        """
+        if self.is_world or self.is_trick:
+            return False, None
+
+        # Search for a world that this is the child of, given the restrictions described in this function's docstring
+        visited_scenes = []
+        fringe = [self]
+        while len(fringe) > 0:
+            # Pop a scene to explore from the fringe
+            to_explore = fringe.pop(0)
+            # Explore that scene; get its neighbors given our restrictions
+            neighbor_scenes = [choice.leads_from_reference for choice in to_explore.choices_to_references if choice.color not in ["green", "blue"]]
+            # For each of these neighbors, check if it's a world.  Then if it's not in visited_scenes, add it to visited_scenes and then add it to the fringe
+            for scene in neighbor_scenes:
+                if scene.is_world:
+                    return True, scene
+                if scene not in visited_scenes:
+                    visited_scenes.append(scene)
+                    fringe.append(scene)
+        return False, None
 
 
 class Choice:

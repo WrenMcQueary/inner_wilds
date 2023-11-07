@@ -50,6 +50,5 @@ def run_game_main_loop(graph: Graph) -> None:
         # TODO
 
         # If the active scene is an end scene, end the loop
-        print("here0")  # TODO: Remove debugging line
         if active_scene.is_end:
             break

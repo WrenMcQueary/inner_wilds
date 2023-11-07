@@ -167,6 +167,40 @@ def read_game_graph() -> Graph:
         else:
             choice.set_requires_tricks(tuple())
 
+    # For all Scenes, if that Scene is not a trick and is the child of a world through a sequence of choices without any blue or green choices, add a Choice to return to that world.
+    for scene in scenes:
+        is_child, world_parent = scene.is_child_of_world()
+        if is_child:
+            new_choice = Choice(None, "Return to the hub menu for this world", None, None, "gray")
+            new_choice.leads_from_reference = scene
+            new_choice.leads_to_reference = world_parent
+            new_choice.set_requires_tricks(tuple())
+            scene.set_choices_from_references(
+                tuple(list(scene.choices_from_references) +
+                      [
+                          new_choice
+                      ]
+                      )
+            )
+            world_parent.set_choices_to_references(
+                tuple(list(world_parent.choices_to_references) +
+                      [
+                          new_choice
+                      ]
+                      )
+            )
+            choices.append(new_choice)
+
+    # Get rid of ids and id pointers; they no longer tell the full story and conflict with our reference pointers
+    for scene in scenes:
+        delattr(scene, "id")
+        delattr(scene, "choices_to_ids")
+        delattr(scene, "choices_from_ids")
+    for choice in choices:
+        delattr(choice, "id")
+        delattr(choice, "leads_to_id")
+        delattr(choice, "leads_from_id")
+
     # Build the game Graph
     game_graph = Graph(scenes, choices)
     return game_graph
