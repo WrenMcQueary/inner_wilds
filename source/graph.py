@@ -2,6 +2,9 @@
 """
 
 
+from source.basic_utils import word_wrap
+
+
 class Graph:
     """Contains the flow for the full game."""
     def __init__(self, scenes: tuple, choices: tuple):
@@ -69,15 +72,17 @@ class Scene:
         """
         self.gives_tricks = tricks
 
-    def make_player_choose(self):
-        """Get a choice from the player and return it."""
-        available_choices = [choice for choice in self.choices_from if choice.is_available()]
+    def make_player_choose(self, found_tricks: list):
+        """Get a choice from the player and return it.
+        :param found_tricks:        list of tricks that have been discovered by the player, as strings
+        """
+        available_choices = [choice for choice in self.choices_from_references if choice.is_available(found_tricks)]
         num_to_choice = {str(cc+1): choice for cc, choice in enumerate(available_choices)}
-        prompt = ""
+        prompt = "\n"
         keys = num_to_choice.keys()
         for key in keys:
             value = num_to_choice[key]
-            prompt += f"{key}: {value}\n"
+            prompt += word_wrap(f"\t{key}: {value.text}\n")
         while True:
             player_response = input(prompt)
             if player_response in keys:
@@ -130,10 +135,12 @@ class Choice:
         """
         self.requires_tricks = tricks
 
-    def is_available(self) -> bool:
-        """Return False if this choice is barred by an unknown trick, else True.
+    def is_available(self, found_tricks: list) -> bool:
+        """
+        Return False if this choice is barred by an unknown trick, else True.
+        :param found_tricks:        list of tricks that have been discovered by the player, as strings
         """
         for trick in self.requires_tricks:
-            if not trick.player_knows:
+            if trick not in found_tricks:
                 return False
         return True

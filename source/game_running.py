@@ -2,6 +2,7 @@
 
 
 from source.graph import Graph, Scene, Choice
+from source.basic_utils import word_wrap
 
 
 def run_game_main_loop(graph: Graph) -> None:
@@ -33,18 +34,17 @@ def run_game_main_loop(graph: Graph) -> None:
 
     # Main loop
     while True:
-        # Show the user the active scene
-        print(active_scene.text)
+        print("\n" + "-"*80 + "\n")
 
-        # Determine the choices that should be visible to the player from this scene, given the tricks they have
-        # TODO
+        # Show the user the active scene
+        print(word_wrap(active_scene.text))
 
         # Get the user to make a choice
         # TODO: Might be able to use Scene.make_player_choose()
-        # TODO
+        player_choice = active_scene.make_player_choose(found_tricks)
 
         # Change the active scene
-        # TODO
+        active_scene = player_choice.leads_to_reference
 
         # Unlock any tricks related to this new active scene
         # TODO
