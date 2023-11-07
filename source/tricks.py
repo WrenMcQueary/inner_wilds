@@ -3,6 +3,8 @@ Tricks represent knowledge or items that unlock new possibilities in the game.
 """
 
 
+# TODO: Probably deprecate this file
+
 class Trick:
     def __init__(self, text: tuple, player_knows: bool):
         self.text = text

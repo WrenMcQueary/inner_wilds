@@ -11,7 +11,7 @@ class Graph:
 
 class Scene:
     """Analogous to a node."""
-    def __init__(self, id: str, text: str, color: tuple, is_trick: bool, is_start: bool, is_end: bool):
+    def __init__(self, id: str, text: str, color: str, is_trick: bool, is_start: bool, is_end: bool):
         """
         :param id:              unique identifier
         :param text:            the text of the node in the canvas (usually text to be displayed to the player)
@@ -33,6 +33,42 @@ class Scene:
         self.is_start = is_start
         self.is_end = is_end
 
+    def set_choices_to_ids(self, choices_to_ids: tuple):
+        """
+        Set the attribute choices_to_ids
+        :param choices_to_ids:      a tuple of the ids of all choices leading to this scene
+        """
+        self.choices_to_ids = choices_to_ids
+
+    def set_choices_from_ids(self, choices_from_ids: tuple):
+        """
+        Set the attribute choices_from_ids
+        :param choices_from_ids:    a tuple of the ids of all choices leading away from this scene
+        """
+        self.choices_from_ids = choices_from_ids
+
+    def set_choices_to_references(self, choices_to_references: tuple):
+        """
+        Set the attribute choices_to_references
+        :param choices_to_references:   a tuple of all Choice objects leading to this scene
+        """
+        self.choices_to_references = choices_to_references
+
+    def set_choices_from_references(self, choices_from_references: tuple):
+        """
+        Set the attribute choices_from_references
+        :param choices_from_references: a tuple of all Choice objects leading away from this scene
+        """
+        self.choices_from_references = choices_from_references
+
+    def set_gives_tricks(self, tricks: tuple):
+        """
+        Set the tricks that this Scene gives.
+        :param tricks:  tuple of strings.  Tricks that this Scene gives the player
+        :return:
+        """
+        self.gives_tricks = tricks
+
     def make_player_choose(self):
         """Get a choice from the player and return it."""
         available_choices = [choice for choice in self.choices_from if choice.is_available()]
@@ -52,15 +88,13 @@ class Scene:
 
 class Choice:
     """Analogous to an edge."""
-    def __init__(self, id: str, text: str, leads_to: str, leads_from: str, color, requires_tricks=tuple(), gives_tricks=tuple()):
+    def __init__(self, id: str, text: str, leads_to_id: str, leads_from_id: str, color):
         """
         :param id:                  unique identifier
         :param text:                the text of the choice.
-        :param leads_to:            id of the Scene this Choice points away from
-        :param leads_from:          id of the Scene this Choice points toward
+        :param leads_to_id:         id of the Scene this Choice points away from
+        :param leads_from_id:       id of the Scene this Choice points toward
         :param color:               color name.  No color is "gray".
-        :param requires_tricks:     tuple of required tricks for this choice to be visible to the player
-        :param gives_tricks:        tuple of tricks that this choice gives the player
         """
         # Handle errors
         # text is empty
@@ -70,11 +104,31 @@ class Choice:
         # Run
         self.id = id
         self.text = text
-        self.leads_to = leads_to
-        self.leads_from = leads_from
+        self.leads_to_id = leads_to_id
+        self.leads_from_id = leads_from_id
         self.color = color
-        self.requires_tricks = requires_tricks
-        self.gives_tricks = gives_tricks
+
+    def set_leads_to_reference(self, leads_to_reference: Scene):
+        """
+        Set the attribute leads_to_reference
+        :param leads_to_reference:      the Scene object that this choice leads to
+        """
+        self.leads_to_reference = leads_to_reference
+
+    def set_leads_from_reference(self, leads_from_reference: Scene):
+        """
+        Set the attribute leads_from_reference
+        :param leads_from_reference:    the Scene object that this choice leads away from
+        """
+        self.leads_from_reference = leads_from_reference
+
+    def set_requires_tricks(self, tricks: tuple):
+        """
+        Set the tricks required for this choice to be visible to the player.
+        :param tricks:  tuple of of strings.  Required tricks for this choice to be visible to the player
+        :return:
+        """
+        self.requires_tricks = tricks
 
     def is_available(self) -> bool:
         """Return False if this choice is barred by an unknown trick, else True.

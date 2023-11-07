@@ -46,11 +46,13 @@ def build_scene_objects(scene_dicts: list) -> list:
         this_id = this_dict["id"]
         # Text
         this_text = this_dict["text"]
+        if len(this_text) == 0:
+            this_text = "Continue"
         # Color
         if "color" in this_dict:
             this_color = color_number_to_name(this_dict["color"])
         else:
-            this_color = color_number_to_name(this_dict[None])
+            this_color = color_number_to_name(None)
         # Is trick
         this_is_trick = this_text.startswith("TRICK: ") and this_color == "green"
         # Is start
@@ -88,13 +90,9 @@ def build_choice_objects(choice_dicts: list) -> list:
         if "color" in this_dict:
             this_color = color_number_to_name(this_dict["color"])
         else:
-            this_color = color_number_to_name(this_dict[None])
-        # Requires tricks
-        this_requires_tricks = TODO     # TODO
-        # Gives tricks
-        this_gives_tricks = TODO       # TODO
+            this_color = color_number_to_name(None)
         # Build and append to output
-        out.append(Choice(this_id, this_text, this_leads_to, this_leads_from, this_color, this_requires_tricks, this_gives_tricks))
+        out.append(Choice(this_id, this_text, this_leads_to, this_leads_from, this_color))
         pass
 
     return out
@@ -102,11 +100,73 @@ def build_choice_objects(choice_dicts: list) -> list:
 
 def read_game_graph() -> Graph:
     """Read the canvas file"""
+    # Get scenes and choices from the canvas file
     with open(FLOWCHART_PATH) as file:
         content = json.load(file)
     scenes = content["nodes"]
-    # TODO: Turn scenes from a list of dicts to a list of Scene objects, using build_scene_objects()
     choices = content["edges"]
-    # TODO: Turn choices from a list of dicts to a list of Choice objects, using build_choice_objects()
+
+    # Convert them to Scene and Choice objects
+    scenes = build_scene_objects(scenes)
+    choices = build_choice_objects(choices)
+
+    # Set choices_to_ids, choices_to_references, choices_from_ids, and choices_from_references for all Scenes
+    # choices_to_ids and choices_to_references
+    for scene in scenes:
+        choices_to_ids = []
+        choices_to_references = []
+        for choice in choices:
+            if choice.leads_to_id == scene.id:
+                choices_to_ids.append(choice.id)
+                choices_to_references.append(choice)
+        scene.set_choices_to_ids(tuple(choices_to_ids))
+        scene.set_choices_to_references(tuple(choices_to_references))
+    # choices_from_ids and choices_from_references
+    for scene in scenes:
+        choices_from_ids = []
+        choices_from_references = []
+        for choice in choices:
+            if choice.leads_from_id == scene.id:
+                choices_from_ids.append(choice.id)
+                choices_from_references.append(choice)
+        scene.set_choices_from_ids(tuple(choices_from_ids))
+        scene.set_choices_from_references(tuple(choices_from_references))
+
+    # Set leads_to_reference and leads_from_reference for all Choices
+    for choice in choices:
+        # leads_to_reference
+        for scene in scenes:
+            if scene.id == choice.leads_to_id:
+                choice.set_leads_to_reference(scene)
+                break
+        # leads_from_reference
+        for scene in scenes:
+            if scene.id == choice.leads_from_id:
+                choice.set_leads_from_reference(scene)
+                break
+
+    # For all Scenes, set gives_tricks
+    trick_signifier = "TRICK: "
+    for scene in scenes:
+        gives_tricks = []
+        for choice in scene.choices_from_references:
+            text = choice.leads_to_reference.text
+            if text.startswith(trick_signifier):
+                gives_tricks.append(text[len(trick_signifier):])
+        scene.set_gives_tricks(tuple(gives_tricks))
+
+    # For all Choices, set requires_tricks
+    for choice in choices:
+        requires_tricks = []
+        relevant_scene = choice.leads_from_reference
+        if choice.color == "yellow":
+            for inbound_choice in relevant_scene.choices_to_references:
+                if inbound_choice.color == "green" and inbound_choice.leads_from_reference.text.startswith(trick_signifier):
+                    requires_tricks.append(inbound_choice.leads_from_reference.text[len(trick_signifier):])
+            choice.set_requires_tricks(tuple(requires_tricks))
+        else:
+            choice.set_requires_tricks(tuple())
+
+    # Build the game Graph
     game_graph = Graph(scenes, choices)
     return game_graph
