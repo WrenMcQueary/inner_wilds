@@ -73,9 +73,9 @@ class Scene:
         """
         self.gives_tricks = tricks
 
-    def make_player_choose(self, found_tricks: list):
+    def make_player_choose(self, found_tricks: set):
         """Get a choice from the player and return it.
-        :param found_tricks:        list of tricks that have been discovered by the player, as strings
+        :param found_tricks:        set of tricks that have been discovered by the player, as strings
         """
         available_choices = [choice for choice in self.choices_from_references if choice.is_available(found_tricks) and not choice.leads_to_reference.is_trick]
         num_to_choice = {str(cc+1): choice for cc, choice in enumerate(available_choices)}
@@ -162,10 +162,10 @@ class Choice:
         """
         self.requires_tricks = tricks
 
-    def is_available(self, found_tricks: list) -> bool:
+    def is_available(self, found_tricks: set) -> bool:
         """
         Return False if this choice is barred by an unknown trick, else True.
-        :param found_tricks:        list of tricks that have been discovered by the player, as strings
+        :param found_tricks:        set of tricks that have been discovered by the player, as strings
         """
         for trick in self.requires_tricks:
             if trick not in found_tricks:

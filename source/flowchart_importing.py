@@ -6,6 +6,7 @@ redesigned.
 import json
 from os import path
 from source.graph import Graph, Scene, Choice
+from source.flowchart_syntax import trick_signifier
 
 
 FLOWCHART_PATH = path.join("source", "game_flowchart.canvas")
@@ -146,7 +147,6 @@ def read_game_graph() -> Graph:
                 break
 
     # For all Scenes, set gives_tricks
-    trick_signifier = "TRICK: "
     for scene in scenes:
         gives_tricks = []
         for choice in scene.choices_from_references:

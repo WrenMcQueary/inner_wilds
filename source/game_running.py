@@ -3,6 +3,7 @@
 
 from source.graph import Graph, Scene, Choice
 from source.basic_utils import word_wrap
+from source.flowchart_syntax import trick_signifier
 
 
 def run_game_main_loop(graph: Graph) -> None:
@@ -12,7 +13,7 @@ def run_game_main_loop(graph: Graph) -> None:
     :param graph:   Graph object representing the full game
     """
     # Initialize list of found tricks
-    found_tricks = []
+    found_tricks = set()
 
     # Find the START node.  Throw an error if there isn't exactly one.
     start_nodes = []
@@ -40,14 +41,16 @@ def run_game_main_loop(graph: Graph) -> None:
         print(word_wrap(active_scene.text))
 
         # Get the user to make a choice
-        # TODO: Might be able to use Scene.make_player_choose()
         player_choice = active_scene.make_player_choose(found_tricks)
 
         # Change the active scene
         active_scene = player_choice.leads_to_reference
 
         # Unlock any tricks related to this new active scene
-        # TODO
+        for choice in active_scene.choices_from_references:
+            if choice.leads_to_reference.is_trick:
+                trick = choice.leads_to_reference.text[len(trick_signifier):]
+                found_tricks.add(trick)
 
         # If the active scene is an end scene, end the loop
         if active_scene.is_end:
