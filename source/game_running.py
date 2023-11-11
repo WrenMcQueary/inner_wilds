@@ -5,6 +5,9 @@ from source.graph import Graph, Scene, Choice
 from source.basic_utils import make_player_choose
 from source.flowchart_syntax import trick_signifier
 from source.saving_and_loading import is_save_data_empty, wipe_save, save, load
+from source.splash import display_splash_screen
+
+from playsound import playsound
 
 
 SCENE_DIVIDER = "\n" + "-" * 80 + "\n"
@@ -51,8 +54,9 @@ def run_game_main_loop(graph: Graph) -> None:
         if len(start_node.choices_from_references) != 1:
             raise RuntimeError("the START node must point to exactly 1 scene")
         active_scene = start_node.choices_from_references[0].leads_to_reference
-        # Play the intro song
-        # TODO
+        # Title screen and play the intro song
+        display_splash_screen()
+        playsound("source/audio/Inner Wilds.mp3")
     else:   # If continuing a saved game...
         # Find the scene to make active
         active_scene = None
