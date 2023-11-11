@@ -46,3 +46,22 @@ def word_wrap(s: str, line_length=80) -> str:
     # Recompose chunks into a string and return
     out = "\n".join(chunks)
     return out
+
+
+def make_player_choose(prompt: str, options: dict) -> str:
+    """
+    Show a player a prompt and a numbered collection of options, then force them to pick a valid number.
+    :param prompt:      the prompt to show.
+    :param options:     a dict of options to show, with their numbers as keys.  For example, {"1": "Eat the bread", "2": "Smell the bread", "3": "Drop the bread"}
+    :return:            the number the player chose
+    """
+    print(word_wrap(prompt) + "\n")
+    prompt = ""
+    for key, value in options.items():
+        prompt += word_wrap(f"\t{key}: {value}\n")
+    prompt += "\n\t"
+    while True:
+        player_response = input(prompt)
+        if player_response in options:
+            return player_response
+        print("Choice not recognized.  Press a number for one of the following options, then press Enter.")

@@ -191,9 +191,8 @@ def read_game_graph() -> Graph:
             )
             choices.append(new_choice)
 
-    # Get rid of ids and id pointers; they no longer tell the full story and conflict with our reference pointers
+    # Get rid of most ids and id pointers; they no longer tell the full story and are redundant with our reference pointers
     for scene in scenes:
-        delattr(scene, "id")
         delattr(scene, "choices_to_ids")
         delattr(scene, "choices_from_ids")
     for choice in choices:

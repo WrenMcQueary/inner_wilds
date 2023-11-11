@@ -2,7 +2,7 @@
 """
 
 
-from source.basic_utils import word_wrap
+from source.basic_utils import make_player_choose
 
 
 class Graph:
@@ -73,22 +73,14 @@ class Scene:
         """
         self.gives_tricks = tricks
 
-    def make_player_choose(self, found_tricks: set):
+    def present_scene_and_make_player_choose(self, found_tricks: set):
         """Get a choice from the player and return it.
         :param found_tricks:        set of tricks that have been discovered by the player, as strings
         """
         available_choices = [choice for choice in self.choices_from_references if choice.is_available(found_tricks) and not choice.leads_to_reference.is_trick]
         num_to_choice = {str(cc+1): choice for cc, choice in enumerate(available_choices)}
-        prompt = "\n"
-        keys = num_to_choice.keys()
-        for key in keys:
-            value = num_to_choice[key]
-            prompt += word_wrap(f"\t{key}: {value.text}\n")
-        while True:
-            player_response = input(prompt)
-            if player_response in keys:
-                break
-            print("Choice not recognized.  Choose again.")
+        num_to_choice_text = {str(cc+1): choice.text for cc, choice in enumerate(available_choices)}
+        player_response = make_player_choose(self.text, num_to_choice_text)
         return num_to_choice[player_response]
 
     def is_child_of_world(self) -> tuple:
