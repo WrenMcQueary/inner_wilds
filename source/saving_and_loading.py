@@ -2,6 +2,7 @@
 
 
 SHIP_LOG_PATH = "ship_log.txt"
+LOG_ENTRY_SIGNIFIER = "LOG ENTRY: "
 
 
 def is_save_data_empty() -> bool:
@@ -47,7 +48,8 @@ def load() -> tuple:
         scene_id = content[0].replace("current scene id: ", "")
         tricks = set()
         for line in content[3:]:
-            tricks.add(line)
+            if line.startswith(LOG_ENTRY_SIGNIFIER):
+                tricks.add(line[len(LOG_ENTRY_SIGNIFIER):])
         return (scene_id, tricks)
     except:
         raise RuntimeError("The ship log (which doubles as your save file) was corrupted.  You'll have to start a new game.")
