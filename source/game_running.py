@@ -84,9 +84,9 @@ def run_game_main_loop(graph: Graph) -> None:
                 print(f"ADDED TRICK: {trick}")
                 found_tricks.add(trick)
 
-        # Save
-        save(active_scene.id, found_tricks)
-
         # If the active scene is an end scene, end the loop
         if active_scene.is_end:
             break
+
+        # Save
+        save(active_scene.id, found_tricks)
