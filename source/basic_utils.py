@@ -58,10 +58,10 @@ def make_player_choose(prompt: str, options: dict) -> str:
     print(word_wrap(prompt) + "\n")
     prompt = ""
     for key, value in options.items():
-        prompt += word_wrap(f"\t{key}: {value}\n")
-    prompt += "\n\t"
+        prompt += word_wrap(f"    {key}: {value}\n")
+    prompt += "\n    "
     while True:
         player_response = input(prompt)
         if player_response in options:
             return player_response
-        print("Choice not recognized.  Press a number for one of the following options, then press Enter.")
+        print(word_wrap("Choice not recognized.  Press a number for one of the following options, then press Enter."))
