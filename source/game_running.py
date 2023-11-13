@@ -81,7 +81,6 @@ def run_game_main_loop(graph: Graph) -> None:
         for choice in active_scene.choices_from_references:
             if choice.leads_to_reference.is_trick:
                 trick = choice.leads_to_reference.text[len(trick_signifier):]
-                print(f"ADDED TRICK: {trick}")
                 found_tricks.add(trick)
 
         # If the active scene is an end scene, end the loop
