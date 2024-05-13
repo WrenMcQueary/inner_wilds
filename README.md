@@ -1,3 +1,9 @@
+# Inner Wilds
+
+A little text-based game inspired by [Outer Wilds](https://store.steampowered.com/app/753640/Outer_Wilds/), for the love of my life.
+
+I made the underlying graph for this game using [Obsidian Canvas](https://obsidian.md/canvas), and built a parser that turns Obsidian Canvas graphs into playable text-adventure games!
+
 ## Required packages
 
 - `playsound`
