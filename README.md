@@ -4,13 +4,9 @@ A little text-based game inspired by [Outer Wilds](https://store.steampowered.co
 
 I made the underlying graph for this game using [Obsidian Canvas](https://obsidian.md/canvas), and built a parser that turns Obsidian Canvas graphs into playable text-adventure games!
 
-## Required packages
-
-- `playsound`
-
 ## How to play
 
-To play the game, run the file `main.py`.
+To play the game, run the file `main.exe`.  No installation required!
 
 There's a little bit of music at the start of the game, so turn your volume on.  ^^
 
