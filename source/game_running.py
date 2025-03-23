@@ -7,7 +7,7 @@ from source.flowchart_syntax import trick_signifier
 from source.saving_and_loading import is_save_data_empty, wipe_save, save, load
 from source.splash import display_splash_screen
 
-from playsound import playsound
+from playsound3 import playsound
 
 
 SCENE_DIVIDER = "\n" + "-" * 80 + "\n"
