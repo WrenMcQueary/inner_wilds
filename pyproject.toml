@@ -1,0 +1,11 @@
+[project]
+name = "inner-wilds"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "playsound3>=3.2.2",
+    "setuptools>=77.0.3",
+    "wheel>=0.45.1",
+]
