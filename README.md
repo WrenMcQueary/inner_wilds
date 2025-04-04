@@ -12,7 +12,7 @@ You'll need to run the game's Python source.  Here's how:
 1. Install [uv](https://docs.astral.sh/uv/getting-started/installation/#next-steps), a Python package manager.
 2. Open a terminal at this repository's root.
 3. Run `uv sync` to create a Python virtual environment and install all Python dependencies.
-4. Run `source .venv/bin/activate` to activate the environment.  On Windows systems, you may need to run `source .venv/Scripts/activate` instead.
+4. If you're on Linux or macOS, run `source .venv/bin/activate` to activate the environment.  On Windows systems, you'll need to run `.venv\Scripts\activate` instead.
 5. Run `python3 main.py` to launch the game.
 
 ## How to play
@@ -65,8 +65,15 @@ You can direct orange connectors from tricks to normal scenes.  If the player wo
 A state can redirect to only one other state, but you can implement a chain of state redirects with unlimited length.
 
 ### Changing other game elements
-These changes won't affect your `main.exe` file until you recompile it on a Windows machine with the terminal command `pyinstaller main.py`.  If you used `uv sync` to set up a virtual environment for this repository and activated it with `source .venv/bin/activate` or `source .venv/Scripts/activate`, you will already be able to run PyInstaller.
+These changes won't affect your `main.exe` file until you recompile it.
 - **Splash screen:** Edit the `splash_title` variable in `source/splash.py`
 - **Splash screen song:** Replace `source/audio/Inner Wilds.mp3` with a different mp3 file.
 - **Name of the save file, save file header, or prefix of save file trick entries:** Edit the `SHIP_LOG_PATH`, `SHIP_LOG_HEADER`, and/or `LOG_ENTRY_SIGNIFIER` variables in `source/saving_and_loading.py`.
 - **Choice text for returning to a hub**: Edit the `HUB_RETURN_CHOICE_STRING` variable in `source/flowchart_importing.py`.
+
+## Recompiling the exe
+Recompiling the exe can only be performed on Windows.  Recompiling is necessary to apply certain changes to `main.exe`, but if you're just running Python instead, it's never necessary.
+
+On a Windows machine, you can recompile with the terminal command `pyinstaller main.py`.  If you used `uv sync` to set up a virtual environment for this repository and activated it with `source .venv/bin/activate` or `.venv\Scripts\activate`, you will already be able to run PyInstaller.
+
+Finally, delete `_internal/` and `main.exe`, and replace them with their counterparts found inside `dist/main/`.
