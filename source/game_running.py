@@ -1,7 +1,7 @@
 """For running the game proper"""
 
 
-from source.graph import Graph, Scene, Choice
+from source.graph import Graph
 from source.basic_utils import make_player_choose
 from source.flowchart_syntax import trick_signifier
 from source.saving_and_loading import is_save_file_missing, is_save_data_empty, wipe_save, save, load
@@ -65,7 +65,7 @@ def run_game_main_loop(graph: Graph) -> None:
                 active_scene = scene
                 break
         if active_scene is None:
-            raise RuntimeError(f"Loading saved game failed; couldn't find a scene matching the scene id in ship log: {starting_scene_id}")
+            raise RuntimeError(f"Loading saved game failed; couldn't find a scene matching the scene id in save file: {starting_scene_id}")
 
     # Main loop
     while True:
