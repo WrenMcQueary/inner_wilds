@@ -218,7 +218,7 @@
 		{"id":"4ea7de5579ae0e5b","fromNode":"4495e44c47641863","fromSide":"top","toNode":"0348c7e4bc818c1c","toSide":"right","color":"3","label":"Splash the crystal blockage with some of the water from your vial."},
 		{"id":"b20816c3c4408f2d","fromNode":"c1cbe0f1e9ced51d","fromSide":"bottom","toNode":"9b960cea6765fd5a","toSide":"top","label":"A cluster of limestone pillars that keep rising and sinking in unison."},
 		{"id":"435aea9d0b963a1c","fromNode":"f9c9965b8fa60022","fromSide":"bottom","toNode":"8e024d66a3235329","toSide":"top"},
-		{"id":"1cff2c958ea4ca19","fromNode":"ef0eadba70c2a37b","fromSide":"bottom","toNode":"cdd02e6804710fa7","toSide":"top","label":"Use the durite cutter on the dam."},
+		{"id":"1cff2c958ea4ca19","fromNode":"ef0eadba70c2a37b","fromSide":"bottom","toNode":"cdd02e6804710fa7","toSide":"top","color":"3","label":"Use the durite cutter on the dam."},
 		{"id":"4f1328ee186100fd","fromNode":"25ec2a6e6145b54d","fromSide":"top","toNode":"9dd398a1a531f971","toSide":"bottom","label":"A mountain peak on the north pole, topped with a giant bird nest"},
 		{"id":"a9e5e7fca233eabc","fromNode":"7487b1415d93c887","fromSide":"top","toNode":"ec09ecb1ae66ebee","toSide":"bottom","label":"A large, industrial-looking stone building with a smokestack"},
 		{"id":"94d987c1cf4523ad","fromNode":"ec09ecb1ae66ebee","fromSide":"right","toNode":"ec20e2c38903c42f","toSide":"left","label":"Try to use the computer"},
@@ -497,7 +497,7 @@
 		{"id":"4ead3d61c38db09c","fromNode":"c1cbe0f1e9ced51d","fromSide":"right","toNode":"559e703b267fb587","toSide":"right","color":"5","label":"Ascend into interplanetary space."},
 		{"id":"169da69bdac338db","fromNode":"7487b1415d93c887","fromSide":"bottom","toNode":"559e703b267fb587","toSide":"right","color":"5","label":"Ascend into interplanetary space"},
 		{"id":"4d61814bd9a207d7","fromNode":"25ec2a6e6145b54d","fromSide":"top","toNode":"559e703b267fb587","toSide":"bottom","color":"5","label":"Ascend into interplanetary space"},
-		{"id":"535582e74cc356e8","fromNode":"9c9cfae893c8095e","fromSide":"bottom","toNode":"3555789efa017182","toSide":"bottom"},
+		{"id":"535582e74cc356e8","fromNode":"9c9cfae893c8095e","fromSide":"bottom","toNode":"ec09ecb1ae66ebee","toSide":"left"},
 		{"id":"e13568c5c3ade4ba","fromNode":"cdd02e6804710fa7","fromSide":"right","toNode":"cd29de52b0968b50","toSide":"left"},
 		{"id":"6d24dbaca7c53855","fromNode":"cd29de52b0968b50","fromSide":"top","toNode":"69e51234b53c0679","toSide":"right","color":"2"},
 		{"id":"a55aefb33306418f","fromNode":"69e51234b53c0679","fromSide":"bottom","toNode":"7c0451c312ce1c45","toSide":"top","color":"2"}
