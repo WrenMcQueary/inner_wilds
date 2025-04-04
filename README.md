@@ -74,6 +74,6 @@ These changes won't affect your `main.exe` file until you recompile it.
 ## Recompiling the exe
 Recompiling the exe can only be performed on Windows.  Recompiling is necessary to apply certain changes to `main.exe`, but if you're just running Python instead, it's never necessary.
 
-On a Windows machine, you can recompile with the terminal command `pyinstaller main.py`.  If you used `uv sync` to set up a virtual environment for this repository and activated it with `source .venv/bin/activate` or `.venv\Scripts\activate`, you will already be able to run PyInstaller.
+On a Windows machine, you can recompile with the terminal command `pyinstaller main.py`.  If you used `uv sync` to set up a virtual environment for this repository and activated it with `.venv\Scripts\activate`, you will already be able to run PyInstaller.
 
 Finally, delete `_internal/` and `main.exe`, and replace them with their counterparts found inside `dist/main/`.
