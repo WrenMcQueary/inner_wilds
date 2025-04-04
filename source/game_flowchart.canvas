@@ -206,7 +206,8 @@
 		{"id":"6d482813a4449a92","type":"text","text":"A few moments later, you hear screeching from the north.  Birds descend from the northern mountain, fixated on their reflections in the water.  With territorial caws of defiance, they scratch and peck at the water's surface, fighting imaginary enemies.  In the confusion, they scatter large amounts of bird down on the river's shore.  Eventually they return to their nest, leaving many feathers behind.\n\nYou gather some of the down, just in case, and line your suit with it.  As you do so, you see one of the birds swoop *into* this planet's sun, and reemerge a moment later.  A thought hits you: These feathers seem to protect from intense heat, even a star's.","x":6220,"y":5748,"width":250,"height":740},
 		{"id":"cdd02e6804710fa7","type":"text","text":"With a thunderous roar, a portal tears its way through the purple stone.  Water begins to flow through it, cascading down the side of the mesa and into the desiccated river bed below.\n\nAfter a few moments, the portal seems like it tries to close again, but is held open by the pressure of the water flowing through.  The river continues to flow anew, rushing northward.","x":6580,"y":5188,"width":250,"height":452},
 		{"id":"89234e2b2ee12836","type":"text","text":"You now stand on the island.  A pedestal with a button stands near where you landed, as do some ziplines running back to the ground below.","x":14000,"y":2920,"width":250,"height":177},
-		{"id":"90bc7507cea581b2","type":"text","text":"A portal rushes open from the hole in the slab and drags you into it.  Suddenly your face and hands are right up against the target marker.  You slide down a few inches as your feet find the floor.  You look behind you, at the portal, just in time to see it close, leaving a new speck of char on the slab.","x":13580,"y":2378,"width":250,"height":547}
+		{"id":"90bc7507cea581b2","type":"text","text":"A portal rushes open from the hole in the slab and drags you into it.  Suddenly your face and hands are right up against the target marker.  You slide down a few inches as your feet find the floor.  You look behind you, at the portal, just in time to see it close, leaving a new speck of char on the slab.","x":13580,"y":2378,"width":250,"height":547},
+		{"id":"9c9cfae893c8095e","x":10000,"y":1840,"width":250,"height":177,"type":"text","text":"The display case is partially dissolved and its contents have been removed.  This is where you got your laser cutter from."}
 	],
 	"edges":[
 		{"id":"ae3cfdc5700103dd","fromNode":"c1cbe0f1e9ced51d","fromSide":"top","toNode":"c7b6b8ce1f132a1e","toSide":"bottom","label":"One of the many vibrant springs that dot the landscape."},
@@ -276,7 +277,6 @@
 		{"id":"8b2b64f5dabfa3c2","fromNode":"d848adb23a10edf6","fromSide":"top","toNode":"0d1b9a1c0cd47e8e","toSide":"bottom","label":"A wall decorated with blurry images of other planets."},
 		{"id":"e8e3e85d68f2e949","fromNode":"559e703b267fb587","fromSide":"top","toNode":"5ea7dee7947daac5","toSide":"left","label":"MEADOW HILLS: Your home world, verdant and flourishing like a bouquet."},
 		{"id":"fa3e4797ac9082db","fromNode":"559e703b267fb587","fromSide":"right","toNode":"c1cbe0f1e9ced51d","toSide":"top","label":"CRYSTAL SPRINGS: A limestone-colored, rocky world dotted with great spires of lilac crystal jutting askew toward the skies.  Iridescent pools of bubbling rainbow liquid churn and exhale steam into the atmosphere."},
-		{"id":"4ead3d61c38db09c","fromNode":"c1cbe0f1e9ced51d","fromSide":"right","toNode":"559e703b267fb587","toSide":"right","color":"5","label":"Ascend into interplanetary space."},
 		{"id":"5dd96c07750fa854","fromNode":"d177087da4520fb3","fromSide":"right","toNode":"791de6d958d267de","toSide":"left","label":"Approach the door in the outer glass dome"},
 		{"id":"941cc7aa5453b8b6","fromNode":"791de6d958d267de","fromSide":"right","toNode":"b7b6f763d9edcbd6","toSide":"left","label":"Push the door button"},
 		{"id":"2263385d5ba70ba5","fromNode":"b7b6f763d9edcbd6","fromSide":"right","toNode":"b173118a9b631780","toSide":"left","label":"Give the robots a gentle pat"},
@@ -307,7 +307,6 @@
 		{"id":"a5afedefb07f9518","fromNode":"b6fb3270f46602ee","fromSide":"left","toNode":"b216790af6397208","toSide":"right","label":"\"Thanks, Crustopher.\""},
 		{"id":"11fdb2ab693a3e1f","fromNode":"60551e835f474bff","fromSide":"bottom","toNode":"3555789efa017182","toSide":"left","color":"4"},
 		{"id":"da7e022002f11284","fromNode":"559e703b267fb587","fromSide":"right","toNode":"7487b1415d93c887","toSide":"left","label":"SILENT FORTRESS: A desolate planet of dark purple rock.  There are buildings on it, but they're made from a more nondescript gray stone, not native to the planet."},
-		{"id":"169da69bdac338db","fromNode":"7487b1415d93c887","fromSide":"bottom","toNode":"559e703b267fb587","toSide":"right","color":"5","label":"Ascend into interplanetary space"},
 		{"id":"acad064726e296af","fromNode":"ec09ecb1ae66ebee","fromSide":"left","toNode":"6910449b60c38459","toSide":"right","label":"Inspect the industrial equipment"},
 		{"id":"6a19b8cece74454b","fromNode":"51c0a468f5307dd7","fromSide":"bottom","toNode":"931e56dd4318b749","toSide":"top","label":"Examine the stone"},
 		{"id":"d7768c28912dfc43","fromNode":"eea89b0bf674c084","fromSide":"bottom","toNode":"810c45b20fe5c9cb","toSide":"top","label":"Inspect the floating island"},
@@ -331,7 +330,6 @@
 		{"id":"d53684b4fd15085e","fromNode":"3336b3a35a3fffe6","fromSide":"right","toNode":"75d4f4e6bba19b8f","toSide":"top","color":"4"},
 		{"id":"5100218915a5b04d","fromNode":"75d4f4e6bba19b8f","fromSide":"right","toNode":"db3146d7bc99e677","toSide":"top","color":"3","label":"Change clothes so you're just wearing bird down"},
 		{"id":"6a09810e36bb501d","fromNode":"559e703b267fb587","fromSide":"left","toNode":"25ec2a6e6145b54d","toSide":"top","label":"BUZZARD ROOST: A warm and sunbleached planet of shifting sands and rolling tumbleweed."},
-		{"id":"4d61814bd9a207d7","fromNode":"25ec2a6e6145b54d","fromSide":"top","toNode":"559e703b267fb587","toSide":"bottom","color":"5","label":"Ascend into interplanetary space"},
 		{"id":"7930f0371e83d7d8","fromNode":"25ec2a6e6145b54d","fromSide":"top","toNode":"4e803bc224e89715","toSide":"bottom","label":"A mountain peak on the south pole, topped with a giant bird nest"},
 		{"id":"ec8fd0fd2499a573","fromNode":"69e51234b53c0679","fromSide":"right","toNode":"39408423318c4c79","toSide":"left","label":"Inspect the lake"},
 		{"id":"c2704ddfbca1d088","fromNode":"69e51234b53c0679","fromSide":"bottom","toNode":"ef0eadba70c2a37b","toSide":"top","label":"Inspect the dam"},
@@ -491,6 +489,11 @@
 		{"id":"600b61b6328b7fa3","fromNode":"1a8e91c79f7d304c","fromSide":"top","toNode":"f2abf48cc7dfb2da","toSide":"bottom"},
 		{"id":"f7f87f5f68512071","fromNode":"86bc2d2ef9bec0b0","fromSide":"top","toNode":"f2abf48cc7dfb2da","toSide":"bottom"},
 		{"id":"9ec46c35ce5471b9","fromNode":"70cfec03c496fe36","fromSide":"top","toNode":"f2abf48cc7dfb2da","toSide":"bottom"},
-		{"id":"df87f5a085cd5c83","fromNode":"65adff73fa43a32e","fromSide":"top","toNode":"f2abf48cc7dfb2da","toSide":"bottom"}
+		{"id":"df87f5a085cd5c83","fromNode":"65adff73fa43a32e","fromSide":"top","toNode":"f2abf48cc7dfb2da","toSide":"bottom"},
+		{"id":"8b6e45487b1f6fa5","fromNode":"95794a4962bfff96","fromSide":"left","toNode":"3555789efa017182","toSide":"left","color":"2"},
+		{"id":"3ab486794168ac8c","fromNode":"3555789efa017182","fromSide":"left","toNode":"9c9cfae893c8095e","toSide":"right","color":"2"},
+		{"id":"4ead3d61c38db09c","fromNode":"c1cbe0f1e9ced51d","fromSide":"right","toNode":"559e703b267fb587","toSide":"right","color":"5","label":"Ascend into interplanetary space."},
+		{"id":"169da69bdac338db","fromNode":"7487b1415d93c887","fromSide":"bottom","toNode":"559e703b267fb587","toSide":"right","color":"5","label":"Ascend into interplanetary space"},
+		{"id":"4d61814bd9a207d7","fromNode":"25ec2a6e6145b54d","fromSide":"top","toNode":"559e703b267fb587","toSide":"bottom","color":"5","label":"Ascend into interplanetary space"}
 	]
 }
