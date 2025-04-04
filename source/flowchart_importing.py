@@ -55,7 +55,7 @@ def build_scene_objects(scene_dicts: list) -> list:
         else:
             this_color = color_number_to_name(None)
         # Is trick
-        this_is_trick = this_text.startswith("TRICK: ") and this_color == "green"
+        this_is_trick = this_text.startswith(trick_signifier) and this_color == "green"
         # Is start
         this_is_start = this_text == "START" and this_color == "red"
         # Is end
