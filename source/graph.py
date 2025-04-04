@@ -74,7 +74,8 @@ class Scene:
         self.gives_tricks = tricks
 
     def present_scene_and_make_player_choose(self, found_tricks: set):
-        """Get a choice from the player and return it.
+        """
+        Get a choice from the player and return it.
         :param found_tricks:        set of tricks that have been discovered by the player, as strings
         """
         available_choices = [choice for choice in self.choices_from_references if choice.is_available(found_tricks) and not choice.leads_to_reference.is_trick]
@@ -108,6 +109,16 @@ class Scene:
                     visited_scenes.append(scene)
                     fringe.append(scene)
         return False, None
+    
+    def has_state_variant(self) -> bool:
+        """
+        If this Scene can be redirected to another scene under any circumstances, return True.  Else return False.
+        :return:        True or False
+        """
+        for choice in self.choices_from_references:
+            if choice.color == "orange":
+                return True
+        return False
 
 
 class Choice:
@@ -156,9 +167,11 @@ class Choice:
 
     def is_available(self, found_tricks: set) -> bool:
         """
-        Return False if this choice is barred by an unknown trick, else True.
+        Return False if this choice is barred by an unknown trick, or is a hidden redirect, else True.
         :param found_tricks:        set of tricks that have been discovered by the player, as strings
         """
+        if self.color == "orange":
+            return False
         for trick in self.requires_tricks:
             if trick not in found_tricks:
                 return False

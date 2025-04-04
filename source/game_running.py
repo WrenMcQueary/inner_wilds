@@ -77,6 +77,23 @@ def run_game_main_loop(graph: Graph) -> None:
         # Change the active scene
         active_scene = player_choice.leads_to_reference
 
+        # Redirect to a state variant of this scene if needed
+        should_redirect = True
+        if active_scene.has_state_variant():
+            for choice in active_scene.choices_to_references:
+                if choice.color == "orange" and choice.leads_from_reference.is_trick:
+                    trick = choice.leads_from_reference
+                    if trick.text[len(trick_signifier):] not in found_tricks:
+                        should_redirect = False
+        else:
+            should_redirect = False
+        if should_redirect:
+            outgoing_oranges = [choice for choice in active_scene.choices_from_references if choice.color == "orange"]
+            if len(outgoing_oranges) != 1:
+                raise RuntimeError(f"Cannot redirect to state variant of scene {active_scene.id} because does not have exactly 1 outgoing orange edge.")
+            active_scene = outgoing_oranges[0].leads_to_reference
+
+        
         # Unlock any tricks related to this new active scene
         for choice in active_scene.choices_from_references:
             if choice.leads_to_reference.is_trick:
