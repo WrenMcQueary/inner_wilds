@@ -10,6 +10,7 @@ from source.flowchart_syntax import trick_signifier
 
 
 FLOWCHART_PATH = path.join("source", "game_flowchart.canvas")
+HUB_RETURN_CHOICE_STRING = "Return to the hub menu for this world"
 
 
 def color_number_to_name(color_number) -> str:
@@ -171,7 +172,7 @@ def read_game_graph() -> Graph:
     for scene in scenes:
         is_child, world_parent = scene.is_child_of_world()
         if is_child:
-            new_choice = Choice(None, "Return to the hub menu for this world", None, None, "gray")
+            new_choice = Choice(None, HUB_RETURN_CHOICE_STRING, None, None, "gray")
             new_choice.leads_from_reference = scene
             new_choice.leads_to_reference = world_parent
             new_choice.set_requires_tricks(tuple())
