@@ -26,8 +26,12 @@ def get_initial_game_state() -> tuple:
     print(SCENE_DIVIDER)
     player_response = make_player_choose("Existing save data detected.  Welcome back, captain.  Would you like to continue your game or start over?", {"1": "Continue", "2": "Delete save data and start new game"})
     if player_response == "2":
-        wipe_save()
-        return "", set()
+        print(SCENE_DIVIDER)
+        player_response = make_player_choose("Last chance -- delete your save data for good?", {"1": "Keep my save data and continue my existing game", "2": "Delete my save data and start over"})
+        if player_response == "2":
+            wipe_save()
+            return "", set()
+        return load()
     return load()
 
 
