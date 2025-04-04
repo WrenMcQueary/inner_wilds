@@ -69,4 +69,4 @@ def load() -> tuple:
                 tricks.add(line[len(LOG_ENTRY_SIGNIFIER):])
         return (scene_id, tricks)
     except:
-        raise RuntimeError("The ship log (which doubles as your save file) was corrupted.  You'll have to start a new game.")
+        raise RuntimeError(f"Unfortunately the current state of your save file ({SHIP_LOG_PATH}) is invalid.  You'll have to start a new game.")
