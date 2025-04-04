@@ -1,8 +1,20 @@
 """For saving and loading the game."""
 
 
+import os
+
+
 SHIP_LOG_PATH = "ship_log.txt"
+SHIP_LOG_HEADER = "--------LOG BEGINS BELOW--------\n"
 LOG_ENTRY_SIGNIFIER = "LOG ENTRY: "
+
+
+def is_save_file_missing() -> bool:
+    """
+    Check if the save file is missing entirely.
+    :return:    True if the save file does not exist, else False
+    """
+    return not os.path.isfile(SHIP_LOG_PATH)
 
 
 def is_save_data_empty() -> bool:
@@ -31,9 +43,9 @@ def save(scene_id: str, tricks_found: set) -> None:
     with open(SHIP_LOG_PATH, "w", encoding="utf-8") as file:
         file.write(f"current scene id: {scene_id}\n")
         file.write("\n")
-        file.write(f"--------LOG BEGINS BELOW--------\n")
+        file.write(SHIP_LOG_HEADER)
         for trick in tricks_found:
-            file.write(f"LOG ENTRY: {trick}\n")
+            file.write(f"{LOG_ENTRY_SIGNIFIER}{trick}\n")
 
 
 def load() -> tuple:
@@ -41,6 +53,11 @@ def load() -> tuple:
     Load the game from the ship log.
     :return:    tuple with (scene id, set of tricks found)
     """
+    # If no ship log, create a blank one
+    if is_save_file_missing():
+        wipe_save()
+
+    # Load
     with open(SHIP_LOG_PATH, "r", encoding="utf-8") as file:
         content = file.read()
     try:

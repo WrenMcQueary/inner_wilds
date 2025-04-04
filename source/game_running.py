@@ -4,7 +4,7 @@
 from source.graph import Graph, Scene, Choice
 from source.basic_utils import make_player_choose
 from source.flowchart_syntax import trick_signifier
-from source.saving_and_loading import is_save_data_empty, wipe_save, save, load
+from source.saving_and_loading import is_save_file_missing, is_save_data_empty, wipe_save, save, load
 from source.splash import display_splash_screen
 
 from playsound3 import playsound
@@ -19,7 +19,7 @@ def get_initial_game_state() -> tuple:
     :return:    tuple with (scene id, set of tricks found) to pick up the game.  If we should start a new game, return ("", set())
     """
     # If the ship log is empty, start a new game
-    if is_save_data_empty():
+    if is_save_file_missing() or is_save_data_empty():
         return "", set()
 
     # Else, ask the player
